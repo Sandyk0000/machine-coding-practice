@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "iPhone 16",
+        "category": "Electronics",
+        "price": 79999
+    },
+    {
+        "id": 2,
+        "name": "MacBook Air",
+        "category": "Electronics",
+        "price": 99999
+    },
+    {
+        "id": 3,
+        "name": "Running Shoes",
+        "category": "Fashion",
+        "price": 4999
+    },
+    {
+        "id": 4,
+        "name": "Mechanical Keyboard",
+        "category": "Electronics",
+        "price": 8999
+    },
+    {
+        "id": 5,
+        "name": "Denim Jacket",
+        "category": "Fashion",
+        "price": 3999
+    },
+    {
+        "id": 6,
+        "name": "Coffee Maker",
+        "category": "Home",
+        "price": 6999
+    }
+]
