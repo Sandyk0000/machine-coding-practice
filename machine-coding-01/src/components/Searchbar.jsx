@@ -7,7 +7,6 @@ export default function Searchbar({ search, setSearch }) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button type="button">Search</button>
         </div>
     );
 }

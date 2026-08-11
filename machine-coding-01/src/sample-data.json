@@ -34,5 +34,149 @@
         "name": "Coffee Maker",
         "category": "Home",
         "price": 6999
+    },
+    {
+        "id": 7,
+        "name": "Samsung Galaxy S25",
+        "category": "Electronics",
+        "price": 74999
+    },
+    {
+        "id": 8,
+        "name": "Sony Wireless Headphones",
+        "category": "Electronics",
+        "price": 24999
+    },
+    {
+        "id": 9,
+        "name": "Gaming Mouse",
+        "category": "Electronics",
+        "price": 3499
+    },
+    {
+        "id": 10,
+        "name": "Smart Watch",
+        "category": "Electronics",
+        "price": 12999
+    },
+    {
+        "id": 11,
+        "name": "Cotton T-Shirt",
+        "category": "Fashion",
+        "price": 999
+    },
+    {
+        "id": 12,
+        "name": "Leather Wallet",
+        "category": "Fashion",
+        "price": 1999
+    },
+    {
+        "id": 13,
+        "name": "Casual Sneakers",
+        "category": "Fashion",
+        "price": 3499
+    },
+    {
+        "id": 14,
+        "name": "Formal Shirt",
+        "category": "Fashion",
+        "price": 2499
+    },
+    {
+        "id": 15,
+        "name": "Air Fryer",
+        "category": "Home",
+        "price": 8999
+    },
+    {
+        "id": 16,
+        "name": "Table Lamp",
+        "category": "Home",
+        "price": 1499
+    },
+    {
+        "id": 17,
+        "name": "Vacuum Cleaner",
+        "category": "Home",
+        "price": 11999
+    },
+    {
+        "id": 18,
+        "name": "Office Chair",
+        "category": "Home",
+        "price": 15999
+    },
+    {
+        "id": 19,
+        "name": "Atomic Habits",
+        "category": "Books",
+        "price": 499
+    },
+    {
+        "id": 20,
+        "name": "Clean Code",
+        "category": "Books",
+        "price": 699
+    },
+    {
+        "id": 21,
+        "name": "JavaScript: The Good Parts",
+        "category": "Books",
+        "price": 599
+    },
+    {
+        "id": 22,
+        "name": "The Psychology of Money",
+        "category": "Books",
+        "price": 399
+    },
+    {
+        "id": 23,
+        "name": "Yoga Mat",
+        "category": "Fitness",
+        "price": 1299
+    },
+    {
+        "id": 24,
+        "name": "Dumbbell Set",
+        "category": "Fitness",
+        "price": 4999
+    },
+    {
+        "id": 25,
+        "name": "Resistance Bands",
+        "category": "Fitness",
+        "price": 899
+    },
+    {
+        "id": 26,
+        "name": "Skipping Rope",
+        "category": "Fitness",
+        "price": 499
+    },
+    {
+        "id": 27,
+        "name": "Dell 27 Inch Monitor",
+        "category": "Electronics",
+        "price": 22999
+    },
+    {
+        "id": 28,
+        "name": "USB-C Hub",
+        "category": "Electronics",
+        "price": 2999
+    },
+    {
+        "id": 29,
+        "name": "Backpack",
+        "category": "Fashion",
+        "price": 2799
+    },
+    {
+        "id": 30,
+        "name": "Water Bottle",
+        "category": "Fitness",
+        "price": 799
     }
 ]
