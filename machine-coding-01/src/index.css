@@ -249,3 +249,27 @@ select#sortBy option {
   margin-top: auto;
   letter-spacing: -0.01em;
 }
+
+/* No Results Found State */
+.no-results {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  margin-top: 1rem;
+  color: #94a3b8;
+}
+
+.no-results h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 0.5rem 0;
+}
+
+.no-results p {
+  font-size: 0.95rem;
+  margin: 0;
+}

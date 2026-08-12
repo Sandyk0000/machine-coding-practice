@@ -19,6 +19,22 @@ export default function App() {
         );
     };
 
+    const filteredProducts = productsData
+        .filter(
+            (product) =>
+                (category === "All" || product.category === category) &&
+                product.name.toLowerCase().includes(search.toLowerCase().trim())
+        )
+        .sort((a, b) => {
+            if (sortBy === "PriceLowHigh") {
+                return a.price - b.price;
+            }
+            if (sortBy === "PriceHighLow") {
+                return b.price - a.price;
+            }
+            return a.id - b.id;
+        });
+
     return (
         <div>
             <h1>Product Explorer</h1>
@@ -27,23 +43,15 @@ export default function App() {
                 <Category category={category} setCategory={setCategory} />
                 <Sortby sortBy={sortBy} setSortBy={setSortBy} />
             </div>
-            <div className="product-grid">
-                {productsData
-                    .filter(
-                        (product) =>
-                            (category === "All" || product.category === category) &&
-                            product.name.toLowerCase().includes(search.toLowerCase().trim())
-                    )
-                    .sort((a, b) => {
-                        if (sortBy === "PriceLowHigh") {
-                            return a.price - b.price;
-                        }
-                        if (sortBy === "PriceHighLow") {
-                            return b.price - a.price;
-                        }
-                        return a.id - b.id;
-                    })
-                    .map((product) => (
+
+            {filteredProducts.length === 0 ? (
+                <div className="no-results">
+                    <h2>No products found</h2>
+                    <p>Try adjusting your search or category filter to find what you're looking for.</p>
+                </div>
+            ) : (
+                <div className="product-grid">
+                    {filteredProducts.map((product) => (
                         <Productcard
                             key={product.id}
                             {...product}
@@ -51,7 +59,8 @@ export default function App() {
                             onToggleWishlist={toggleWishlist}
                         />
                     ))}
-            </div>
+                </div>
+            )}
         </div>
     );
 }
