@@ -9,6 +9,15 @@ export default function App() {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
     const [sortBy, setSortBy] = useState("Relevance");
+    const [wishlisted, setWishlisted] = useState([]);
+
+    const toggleWishlist = (productId) => {
+        setWishlisted((prev) =>
+            prev.includes(productId)
+                ? prev.filter((id) => id !== productId)
+                : [...prev, productId]
+        );
+    };
 
     return (
         <div>
@@ -35,7 +44,12 @@ export default function App() {
                         return a.id - b.id;
                     })
                     .map((product) => (
-                        <Productcard key={product.id} {...product} />
+                        <Productcard
+                            key={product.id}
+                            {...product}
+                            isWishlisted={wishlisted.includes(product.id)}
+                            onToggleWishlist={toggleWishlist}
+                        />
                     ))}
             </div>
         </div>
