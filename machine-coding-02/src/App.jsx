@@ -2,26 +2,46 @@ import { useState, useEffect } from 'react';
 import Newscard from './components/Newscard';
 
 export default function App() {
+
+  const categoryList = ['General',
+    'Business',
+    'Technology',
+    'Sports',
+    'Entertainment',
+    'Science',
+    'Health']
+
   const [articles, setArticles] = useState([]);
+  const [totalArticles, setTotalArticles] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [category, setCategory] = useState('general');
+  const [page, setPage] = useState(1);
+
+  const PAGE_SIZE = 9;
 
   useEffect(() => {
-    fetch(`https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&apikey=2de8bd8147b500f6571735a444e98e3f`)
-      .then((response) => {
+    const apiKey = import.meta.env.VITE_GNEWS_API_KEY;
+    async function fetchArticleData() {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=${PAGE_SIZE}&page=${page}&apikey=${apiKey}`);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        return response.json();
-      })
-      .then((data) => {
-        setArticles(data.articles || []);
-        setLoading(false);
-      })
-      .catch((err) => {
+        const articleData = await response.json();
+        setArticles(articleData.articles || []);
+        setTotalArticles(articleData.totalArticles || 0);
+      } catch (err) {
         console.error('Error fetching news:', err);
         setError('Unable to fetch live news (API limit reached or network error).');
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    }
+    fetchArticleData();
+  }, [category, page]);
+
+  const totalPages = Math.ceil(totalArticles / PAGE_SIZE);
 
   return (
     <div className="app-container">
@@ -31,26 +51,74 @@ export default function App() {
         <p className="app-subtitle">Discover trending stories and breaking updates from around the globe</p>
       </header>
 
+      <div className="categories-container">
+        {categoryList.map((item) => {
+          const value = item.toLowerCase();
+          const isActive = category === value;
+          return (
+            <button
+              key={item}
+              className={`category-btn ${isActive ? 'active' : ''}`}
+              onClick={() => {
+                setCategory(value);
+                setPage(1);
+              }}
+            >
+              {item}
+            </button>
+          );
+        })}
+      </div>
+
       {loading && (
-        <div className="status-container">
-          <div className="spinner"></div>
-          <p>Loading news stories...</p>
+        <div className="news-grid">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="news-card shimmer-card">
+              <div className="news-image-wrapper shimmer"></div>
+              <div className="news-content">
+                <div className="shimmer-line shimmer-date"></div>
+                <div className="shimmer-line shimmer-title"></div>
+                <div className="shimmer-line shimmer-title short"></div>
+                <div className="shimmer-line shimmer-text"></div>
+                <div className="shimmer-line shimmer-text"></div>
+                <div className="shimmer-line shimmer-text short"></div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
-      {error && articles.length === 0 && (
+      {!loading && error && articles.length === 0 && (
         <div className="status-container error-box">
           <p>{error}</p>
         </div>
       )}
 
-      {!loading && (
+      {!loading && articles.length > 0 && (
         <div className="news-grid">
           {articles.map((article, index) => (
             <Newscard key={article.url || index} {...article} />
           ))}
         </div>
       )}
+
+      <div className="pagination-container">
+        <button
+          className="page-btn"
+          disabled={page <= 1 || loading}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        >
+          &larr; Previous
+        </button>
+        <span className="page-number">Page {page} {totalPages > 0 ? `of ${totalPages}` : ''}</span>
+        <button
+          className="page-btn"
+          disabled={articles.length < PAGE_SIZE || (totalPages > 0 && page >= totalPages) || loading}
+          onClick={() => setPage((prev) => prev + 1)}
+        >
+          Next &rarr;
+        </button>
+      </div>
     </div>
   );
 }
