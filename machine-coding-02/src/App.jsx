@@ -28,7 +28,6 @@ export default function App() {
    * Automatically triggers API call 1000ms after user stops typing
    * ========================================================================= */
   useEffect(() => {
-    const controller = new AbortController()
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
       setPage(1);
@@ -40,6 +39,7 @@ export default function App() {
   }, [search]);
 
   useEffect(() => {
+    const controller = new AbortController()
     const apiKey = import.meta.env.VITE_GNEWS_API_KEY;
     async function fetchArticleData() {
       setLoading(true);
